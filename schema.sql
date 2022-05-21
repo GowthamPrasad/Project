@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS user;
+
+CREATE TABLE files(filename TEXT PRIMARY KEY, content BLOB);

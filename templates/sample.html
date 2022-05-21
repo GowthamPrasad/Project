@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Medical Transcription</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link href="../static/layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+
+<style>
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: #384047;
+}
+
+form {
+  max-width: 900px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+}
+
+h1 {
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 30px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0 4px 8px 0;
+}
+
+select {
+  padding: 6px;
+  height: 32px;
+  border-radius: 2px;
+}
+
+button {
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  background-color: #4bc970;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #3ac162;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+  margin-bottom: 10px;
+}
+
+fieldset {
+  margin-bottom: 30px;
+  border: none;
+}
+
+legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+label.light {
+  font-weight: 300;
+  display: inline;
+}
+
+.number {
+  background-color: #5fcf80;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  border-radius: 100%;
+}
+
+@media screen and (min-width: 480px) {
+
+  form {
+    max-width: 480px;
+  }
+
+}
+
+</style>
+</head>
+
+<body id="top">
+
+<div class="wrapper row1" style="background-color: #004d80">
+  <header id="header" class="hoc clear" style="background-color: #004d80">
+    <div id="logo" class="fl_left"> 
+      <!-- ################################################################################################ -->
+      <h1><a href="index.html">ABC Hospital</a></h1>
+      <!-- ################################################################################################ -->
+    </div>
+    <nav id="mainav" class="fl_right" style="background-color: #004d80"> 
+      <!-- ################################################################################################ -->
+      <ul class="clear">
+        <li><a href="index.html" style="background-color: #004d80">Home</a></li>
+        <!-- <li><a class="drop" href="#">Pages</a>
+          <ul>
+            <li><a href="pages/gallery.html">Gallery</a></li>
+            <li><a href="pages/full-width.html">Full Width</a></li>
+            <li><a href="pages/sidebar-left.html">Sidebar Left</a></li>
+            <li><a href="pages/sidebar-right.html">Sidebar Right</a></li>
+            <li><a href="pages/basic-grid.html">Basic Grid</a></li>
+            <li><a href="pages/font-icons.html">Font Icons</a></li>
+          </ul>
+        </li>
+        <li><a class="drop" href="#">Dropdown</a>
+          <ul>
+            <li><a href="#">Level 2</a></li>
+            <li><a class="drop" href="#">Level 2 + Drop</a>
+              <ul>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Level 2</a></li>
+          </ul>
+        </li> -->
+        <li><a href="#aboutus" style="background-color: #004d80">About Us</a></li>
+        <li><a href="#services" style="background-color: #004d80">Services</a></li>
+        <li><a href="#departments" style="background-color: #004d80">Departments</a></li>
+        <li><a href="#contactus" style="background-color: #004d80">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+
+<div class="wrapper bgded" style="background-image:url('../static/images/demo/med-transcript-2.jpg');">
+  <div id="pageintro" class="hoc clear"> 
+    <article style="color: black;">
+      <p>The Most Secured</p>
+      <h3 class="heading">Medical Transcription Facility</h3>
+      <h4>Using Blockchain Technology</h4>
+      <footer>
+        <ul class="nospace inline pushright">
+          <!-- <li><a class="btn" href="#">Ultricies dui orci</a></li> -->
+          <li><a class="btn inverse" href="#">Book an appointment</a></li>
+        </ul>
+      </footer>
+    </article>
+  </div>
+</div>
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper coloured">
+  <article class="hoc cta clear"> 
+    <!-- ################################################################################################ -->
+    <h6 style="text-align: center; color: black">ABC Hospital is the only Multispeciality hospital in Coimbatore. Founded in 1975, we aim to provide quality medical services to the people. With latest technology and equipments, ABCH offers excellent medical care and support all days in a year. It is the vision of our hospital to be a humane health care service provider of the highest standard, focusing on providing accessible, safe, effective and efficient medical services to the Community.</h6>
+  </article>
+</div>
+<br><br>
+
+
+
+<!--#####################################################################################################-->
+<div class="wrapper row2" id="services">
+  <section class="hoc container clear"> 
+    <!-- ################################################################################################ -->
+    <div class="sectiontitle">
+      <h6 class="heading">Medical Transcription</h6>
+      <p>Find below links to upload a file or to access a document.</p>
+    </div>
+    <ul class="nospace group prices">
+      <li class="one_third">
+        <article><i><img src="../static/images/demo/icons8-upload-50.png"></i>
+          <h6 class="heading">Upload New File</h6>
+          <p>Upload a new audio file and store it in blockchain in just 2 minutes.</p>
+          <footer><a class="btn" href="#">Details</a></footer>
+        </article>
+      </li>
+      <li class="one_third">
+        <article><i><img src="../static/images/demo/transcription.png"></i>
+          <h6 class="heading">Access a Document</h6>
+          <p>Access your medical report using your Email address and password.</p>
+          <!-- <footer><a class="btn" href="sample.html">Details</a></footer> -->
+		  <footer><a class="btn" href="/read">Details</a></footer>
+        </article>
+      </li>
+      <li class="one_third">
+        <article><i><img src="../static/images/demo/icu.png"></i>
+          <h6 class="heading">Services</h6>
+          <p>We have wide range of services.</p>
+          <footer><a class="btn" href="#">Details</a></footer>
+        </article>
+      </li>
+    </ul>
+    <!-- ################################################################################################ -->
+  </section>
+</div>
+<!--#####################################################################################################-->
+
+
+
+<div class="wrapper row2" id="services">
+  <section class="hoc container clear">
+    <!-- ################################################################################################ -->
+    <!-- <div class="sectiontitle">
+      <h6 class="heading">Our Services</h6>
+      <p>Our services are the best in the city. Click to know more about it.</p>
+    </div> -->
+    <ul class="nospace group prices">
+      
+      <li>
+        <article><i><img src="../static/images/demo/transcription.png"></i>
+          <h6 class="heading">Medical Transcription</h6>
+          <h2>We have excellent medical transcription service where the patient's records are stored and secured.</h2>
+          <h3>Upload audio file to transcribe.</h3>
+		  <form action="/transcribe" method="POST" enctype="multipart/form-data">
+	
+		  <label> Choose the File to upload: </label>
+		  <input type="file" name="file" id="myFile" class="btn inverse"/> <br /><br />
+    
+		  <input type="submit" value="Transcribe" class="btn"/>
+	
+		  </form>
+        </article>
+      </li>
+      
+    </ul>
+    <!-- ################################################################################################ -->
+  </section>
+</div>
+<!-- <div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+</div> -->
+   <!--  <h3>Upload audio file to transcribe.</h3>
+    
+	<form action="/transcribe" method="post">
+	
+    <label> Choose the File to upload: </label>
+    <input type="file" id="myFile"/> <br /><br />
+    
+    <input type="submit" value="Transcribe" />
+	
+	</form> -->
+	
+	<br><br><hr>
+	
+<div class="row">
+<section class="hoc container clear"> 
+    <div class="col-md-12">
+      <form action="/transcribe" method="POST" enctype="multipart/form-data">
+	  <i><img src="../static/images/demo/transcription.png"></i>
+        <h1 class="heading"> Medical Transcription </h1>
+		<h1>We have excellent medical transcription service where the patient's records are stored and secured.</h1>
+        
+        <fieldset>
+        
+          <label for="name">Patient Name:</label>
+          <input type="text" id="name" name="name">
+          <label> Choose the File to upload: </label>
+		  <input type="file" name="file" id="myFile" class="btn inverse"/> <br /><br />
+        <button type="submit">Transcribe</button>
+        </fieldset>
+       </form>
+        </div>
+		</section>
+      </div>
+      
+
+	<h2>The transcribed text</h2>
+	
+	{{ transcribed_text }}
+
+<br><br>
+
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <p style="text-align: center;">Copyright &copy; 2022 - Developed by Gowtham Prasad S</p>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+
+</body>
+
+</html>
