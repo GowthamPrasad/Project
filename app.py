@@ -1,37 +1,24 @@
-# Import required packages and libraries
+# IMPORT REQUIRED PACKAGES AND LIBRARIES
 import numpy as np
-import string
-import random
-from flask import Flask, request, redirect, url_for, jsonify, render_template
+import string # FOR WORKING WITH STRINGS
+import random # FOR PASSWORD GENERATION
+from flask import Flask, request, redirect, url_for, jsonify, render_template # FOR FLASK AND RELATED FEATURES
 import pickle
-import speech_recognition as sr
-# For timestamp
-import datetime
-# Calculating the hash in order to add digital fingerprints to the blocks
-import hashlib
-# To store data in our blockchain
-import json
-import sqlite3 as sql
+import speech_recognition as sr # GOOGLE SPEECH RECOGNITION API
+import datetime # FOR TIMESTAMP
+import hashlib # CALCULATING THE HASH IN ORDER TO ADD DIGITAL FINGERPRINTS TO THE BLOCKS
+import json # TO STORE DATA IN BLOCKCHAIN
+import sqlite3 as sql # TO STORE THE DATA
 
 
-# Blockchain class
+# BLOCKCHAIN CLASS
 class Blockchain:
-	# This function is created
-	# to create the very first
-	# block and set it's hash to "0"
-    
-    # message = 'index'
+	# This function is created to create the very first block and set it's hash to "0"
     def __init__(self):
-        
         self.chain = []
         self.create_block(message='alternate', proof=1, previous_hash='0')
 
-	# This function is created
-	# to add further blocks
-	# into the chain
-    
-   
-    
+	# This function is created to add further blocks into the chain
     def create_block(self, message, proof, previous_hash):
         block = {'index': len(self.chain) + 1,
 				'timestamp': str(datetime.datetime.now()),
@@ -41,13 +28,11 @@ class Blockchain:
         self.chain.append(block)
         return block
 	
-	# This function is created
-	# to display the previous block
+	# This function is created to display the previous block
     def print_previous_block(self):
         return self.chain[-1]
 	
-	# This is the function for proof of work
-	# and used to successfully mine the block
+	# This is the function for proof of work and used to successfully mine the block
     def proof_of_work(self, previous_proof):
         new_proof = 1
         check_proof = False
@@ -87,72 +72,58 @@ class Blockchain:
 		
         return True
     
-
-## characters to generate password from
+# this function used to generate password
 characters = list(string.ascii_letters + string.digits + "!@#$%^&*()")
 
 def generate_random_password():
-	## length of password from the user
 	length = 10
 
-	## shuffling the characters
+	# shuffling the characters
 	random.shuffle(characters)
-	
-	## picking random characters from the list
+
 	password = []
 	for i in range(length):
 		password.append(random.choice(characters))
 
-	## shuffling the resultant password
 	random.shuffle(password)
 
-	## converting the list to string
-	## printing the list
+	# converting the list to string and printing the list
 	return("".join(password))
     
         
-#---------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------#
+# FLASK APP #
 
-# Flask app initialization and opening the pickle file
+# Flask app initialization
 app = Flask(__name__)
 
-# Rendering Home page - input_design.html
+# Rendering Home page - index.html
 @app.route('/')
 def home():
     return render_template('index.html')
 
+# Rendering Medical Transcription page - sample.html
 @app.route('/medtran')
 def med():
     return render_template('sample.html')
     
-    
+# Medical Transcription process route
 @app.route('/transcribe',methods=['POST','GET'])
-def transcribe():    
-    # Python code
-    #import library
-
-   
+def transcribe():
+    global text
     # Initialize recognizer class (for recognizing the speech)
     r = sr.Recognizer()
 
-    # Reading Audio file as source
-    # listening the audio file and store in audio_text variable
+    # Reading Audio file as source, listening the audio file and store in audio_text variable
     
     if request.method == 'POST':
         myfile = request.files['file']
     
-
     with sr.AudioFile(myfile) as source:
-    
         audio_text = r.listen(source)
-    
-        #import pickle
-        #pickle.dump(r,open('model_r.pkl','wb')) 
-        #model = pickle.load(open('model_r.pkl','rb'))
-    
-        #recoginize_() method will throw a request error if the API is unreachable, hence using exception handling
+
+        # recoginize_() method will throw a request error if the API is unreachable, hence using exception handling
         try:
-            
             # using google speech recognition
             text = r.recognize_google(audio_text)
             print('Converting audio transcripts into text ...')
@@ -161,13 +132,14 @@ def transcribe():
         except:
              print('Sorry...run again...')
     
-    #write transcribed text to a text file    
+    # write transcribed text to a text file    
     with open("test.txt", "w") as fo:
         fo.write(text)
         
+    # Insert patient name, password and transcribed text into 'mt.db' 
     user_name=None
     password=None
-    password=generate_random_password()
+    password=generate_random_password() # Calling Password Generation function
     if request.method == 'POST':
         user_name=request.form['name']
         con = sql.connect('mt.db')
@@ -178,32 +150,54 @@ def transcribe():
         print("Data inserted successfully")
         con.close()
 
-    #return render_template('sample.html',transcribed_text=text)
-    return redirect(url_for('mine_block',text=text))
+    return render_template('sample.html',transcribed_text=text)
+    #return redirect(url_for('mine_block',text=text))
     
         
-    
-
-@app.route('/read',methods=['GET','POST'])
+# Rendering Access Document page - read.html
+@app.route('/read')
 def read():
-    
     return render_template('read.html')
 
+@app.route('/access',methods=['POST','GET'])
+def access():
+    if request.method == 'POST':
+        user_name=request.form['name']
+        password=request.form['password']
+        con = sql.connect('mt.db')
+        print("Connected successfully")
+        cur = con.cursor()
+        # statement=f"select * from user where UserName='{user_name}' and Password='{password}';"
+        # cur.execute(statement)
+        # if not cur.fetchone():
+        #     return render_template('read.html',transcribed_text=statement)
+        # else:
+        #     return render_template('read.html',transcribed_text=statement)
 
-#Create the object
-#of the class blockchain
+        # res = cur.execute("select * from user where UserName=user_name and Password=password")
+        # return render_template('read.html', users=res.fetchall())
+
+        res=con.execute('select File from user where UserName=? and Password=?', (user_name,password)).fetchall()
+        
+        return render_template('read.html',transcribed_text=res)
+    
+    # else:
+    #     return render_template('read.html')
+
+
+# OBJECT CREATION FOR BLOCKCHAIN CLASS
 blockchain = Blockchain()
 
 # Mining a new block
-@app.route('/block/<text>', methods=['GET','POST'])
-def mine_block(text):
+@app.route('/block/', methods=['GET','POST'])
+def mine_block():
     msg = text
     previous_block = blockchain.print_previous_block()
     previous_proof = previous_block['proof']
-    proof = blockchain.proof_of_work(previous_proof)
-    previous_hash = blockchain.hash(previous_block)
+    proof = blockchain.proof_of_work(previous_proof) # Calling proof_of_work function
+    previous_hash = blockchain.hash(previous_block) # Calling hash function
     message = msg
-    block = blockchain.create_block(message, proof, previous_hash)
+    block = blockchain.create_block(message, proof, previous_hash) # Calling create_block function with parameters
 	
     response = {'message': block['message'],
 				'index': block['index'],
@@ -223,7 +217,7 @@ def display_chain():
 # Check validity of blockchain
 @app.route('/valid', methods=['GET'])
 def valid():
-    valid = blockchain.chain_valid(blockchain.chain)
+    valid = blockchain.chain_valid(blockchain.chain) # Calling the chain_valid function
 	
     if valid:
         response = {'message': 'The Blockchain is valid.'}
@@ -241,6 +235,6 @@ def valid():
     
     #return render_template('sample.html')
     
-# Execution
+# EXECUTION OF FLASK APP
 if __name__ == "__main__":
     app.run(debug=True)
