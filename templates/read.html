@@ -190,7 +190,7 @@ label.light {
             <input type="text" id="email" name="email">
             <label> Enter the password: </label>
             <input type="password" name="password" id="password"> <br /><br />
-            <button type="submit">Submit</button>
+            <button onclick= "alert('Medical Report fetched successfully!')" type="submit">Submit</button>
         </fieldset>
     </form>
 
@@ -199,13 +199,14 @@ label.light {
     <h1>Your Medical Report</h1>
     <form>
     <fieldset>
+        {{ user_name }}
         {{ transcribed_text }}
     </fieldset>
     </form>
 <!-- ACCESS THE DOCUMENT FORM -->
 
 <!-- FOOTER -->
-<div class="wrapper row4">
+<!-- <div class="wrapper row4">
   <footer id="footer" class="hoc clear"> 
 
     <div class="one_quarter first">
@@ -266,7 +267,7 @@ label.light {
     </div>
 
   </footer>
-</div> 
+</div>  -->
 
 <div class="wrapper row5">
     <div id="copyright" class="hoc clear"> 

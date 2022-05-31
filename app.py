@@ -140,6 +140,7 @@ def transcribe():
     # write transcribed text to a text file    
     with open("test.txt", "w") as fo:
         fo.write(text)
+    
         
     # Insert patient name, password and transcribed text into 'mt.db' 
     user_name=None
@@ -205,9 +206,9 @@ def access():
         # res = cur.execute("select * from user where UserName=user_name and Password=password")
         # return render_template('read.html', users=res.fetchall())
 
-        res=con.execute('select File from user where UserName=? and Password=?', (user_name,password)).fetchall()
-        
-        return render_template('read.html',transcribed_text=res)
+        res=con.execute('select UserName from user where UserName=? and Password=?', (user_name,password)).fetchall()
+        res1=con.execute('select File from user where UserName=? and Password=?', (user_name,password)).fetchall()
+        return render_template('read.html', transcribed_text=res1)
     
     # else:
     #     flash('Invalid password or username!')
