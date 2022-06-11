@@ -137,7 +137,7 @@ def transcribe():
         except:
              print('Sorry...run again...')
     
-    # write transcribed text to a text file    
+    # write transcribed text to a text file 
     with open("test.txt", "w") as fo:
         fo.write(text)
     
@@ -182,7 +182,7 @@ def transcribe():
     #return redirect(url_for('mine_block',text=text))
 
     
-    
+
 # Rendering Access Document page - read.html
 @app.route('/read')
 def read():
