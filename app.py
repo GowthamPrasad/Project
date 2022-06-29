@@ -13,7 +13,6 @@ import smtplib # TO SEND EMAIL
 from email.message import EmailMessage # TO SEND EMAIL
 
 
-
 # BLOCKCHAIN CLASS
 class Blockchain:
 	# This function is created to create the very first block and set it's hash to "0"
@@ -105,6 +104,8 @@ app.secret_key = "super secret key"
 # Rendering Home page - index.html
 @app.route('/')
 def home():
+    
+
     return render_template('index.html')
 
 # Rendering Medical Transcription page - sample.html
@@ -133,6 +134,8 @@ def transcribe():
             text = r.recognize_google(audio_text)
             print('Converting audio transcripts into text ...')
             # print(text)
+            notif="Audio file transcribed successfully and stored in Blockchain!"
+
      
         except:
              print('Sorry...run again...')
@@ -178,7 +181,8 @@ def transcribe():
     print("Password mailed successfully")
 
 
-    return render_template('sample.html',transcribed_text=text)
+    return render_template('sample.html',notification=notif)
+    # return render_template('sample.html',transcribed_text=text)
     #return redirect(url_for('mine_block',text=text))
 
     
